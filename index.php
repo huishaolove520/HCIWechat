@@ -104,8 +104,8 @@ class hciWechatCallbackapi
             $content = trim($object->Content);
             $content = explode("@", $content);
             if (count($content) <= 1) {
-                  switch ($content) {
-                      case '1':
+                  switch ($content[0]) {
+                      case "1":
                          $resultStr = $this->showHciFile($object);
                          break;
                 
@@ -122,9 +122,9 @@ class hciWechatCallbackapi
     //显示HCI的相关信息
     public function showHciFile($object)
     {
-            $content = "[HCI微博]：华农HCI\n
-                        [HCI邮箱]：scauhci@sina.cn\n
-                        [HCI官网]：scauhci.org\n";
+            $content = "[HCI微博]：华农HCI\n".
+                       "[HCI邮箱]：scauhci@sina.cn\n".
+                       "[HCI官网]：scauhci.org\n";
 
             return $this->transmitText($object, $content);
     }
